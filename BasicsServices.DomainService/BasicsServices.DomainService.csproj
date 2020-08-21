@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BasicsServices.IDomainService\BasicsServices.IDomainService.csproj" />
+    <ProjectReference Include="..\BasicsServices.IRepository\BasicsServices.IRepository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Peihui.Core">
+      <HintPath>..\..\..\OrgProject\my_linbrary\Peihui.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

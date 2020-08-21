@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="MailServe\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BasicsServices.IRepository\BasicsServices.IRepository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Peihui.Common.Cache">
+      <HintPath>..\..\..\OrgProject\my_linbrary\Peihui.Common.Cache.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
