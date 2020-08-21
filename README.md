@@ -1,5 +1,5 @@
 # BasicsServices
-基础服务项目
+基于.NET Core3.1的基础服务项目
 
 #### 介绍
 
