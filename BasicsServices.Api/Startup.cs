@@ -119,7 +119,7 @@ namespace BasicsServices.Api
                     Title = "基础服务中心 WebApi",
                     Version = "v1",
                     Description = "提供系统所需的基础服务",
-                    TermsOfService = new Uri("http://47.106.73.201:8080"),
+                    TermsOfService = new Uri("http://47.106.73.201:8080/"),
                     Contact = new OpenApiContact()
                     {
                         Name = "杨培辉",
