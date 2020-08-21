@@ -119,11 +119,11 @@ namespace BasicsServices.Api
                     Title = "基础服务中心 WebApi",
                     Version = "v1",
                     Description = "提供系统所需的基础服务",
-                    TermsOfService = new Uri("http://172.16.100.59:8000/#/passport/login"),
+                    TermsOfService = new Uri("http://47.106.73.201:8080"),
                     Contact = new OpenApiContact()
                     {
                         Name = "杨培辉",
-                        Email = "2019070053@sanhepile.com"
+                        Email = "1293035342@qq.com"
                     }
                 });
                 // 加Token验证
