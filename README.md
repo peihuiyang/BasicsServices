@@ -14,6 +14,7 @@
 	- `Hangfire.Redis.StackExchange`
 * 文件存储使用MongoDB的GridFS
 * 邮件服务基于`MailKit`的支持
-* 相关配置详见代码，展示图片：[图片1](https://note.youdao.com/yws/res/8730/WEBRESOURCE7fe0af4d127654c3235ab55bd519191a)、[图片2](https://note.youdao.com/yws/res/8730/WEBRESOURCE7fe0af4d127654c3235ab55bd519191a);
-![图片1](https://note.youdao.com/yws/res/8730/WEBRESOURCE7fe0af4d127654c3235ab55bd519191a)![图片2](https://note.youdao.com/yws/res/8730/WEBRESOURCE7fe0af4d127654c3235ab55bd519191a)
+* 相关配置详见代码，展示图片：[图片1](https://note.youdao.com/yws/res/8730/WEBRESOURCE7fe0af4d127654c3235ab55bd519191a)、[图片2](http://note.youdao.com/yws/res/8732/WEBRESOURCE3c00713e9d25fa4711aa3fe9a799ca7f);
+![图片1](https://note.youdao.com/yws/res/8730/WEBRESOURCE7fe0af4d127654c3235ab55bd519191a)
+![图片2](http://note.youdao.com/yws/res/8732/WEBRESOURCE3c00713e9d25fa4711aa3fe9a799ca7f)
 
