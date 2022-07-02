@@ -1,5 +1,5 @@
 # BasicsServices
-基于.NET Core3.1的基础服务项目
+基于.NET5的基础服务项目
 
 #### 介绍
 
@@ -18,3 +18,6 @@
 ![图片1](https://note.youdao.com/yws/res/8730/WEBRESOURCE7fe0af4d127654c3235ab55bd519191a)
 ![图片2](http://note.youdao.com/yws/res/8732/WEBRESOURCE3c00713e9d25fa4711aa3fe9a799ca7f)
 
+#### 版本升级
+
+* 2022-07-02 升级为.NET 5
