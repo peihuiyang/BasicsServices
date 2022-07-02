@@ -19,9 +19,9 @@ using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using Peihui.Common.Security;
+using Peihui.Common.Base.Security;
+using Peihui.Common.JsonHelper;
 using Peihui.Core.Config;
-using Peihui.Core.EnDecrypt;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -173,10 +173,20 @@ namespace BasicsServices.Api
             #endregion
 
             services.AddHangfire(HangfireConfiguration);
+            services.AddHangfireServer(HangfirJobOptions);
         }
         #region Hangfire配置
+        /// <summary>
+        /// Hangfire配置
+        /// </summary>
+        /// <param name="globalConfiguration"></param>
         private void HangfireConfiguration(IGlobalConfiguration globalConfiguration)
         {
+            //globalConfiguration.UseStorage(new SqlServerStorage("HangfireConnectionString", new SqlServerStorageOptions
+            //{
+
+            //}));
+
             globalConfiguration
                             .UseRedisStorage(ConnConfig.GetConnectionString("Timing_Task"), new RedisStorageOptions
                             {
@@ -214,7 +224,7 @@ namespace BasicsServices.Api
                                 },
                                 DefaultRecurringQueueName = "default",
                                 DefaultBackGroundJobQueueName = "default",
-                                RecurringJobTimeZone = TZConvert.GetTimeZoneInfo("Asia/Shanghai"), //这里指定了添加周期性job时的时区
+                                // RecurringJobTimeZone = TZConvert.GetTimeZoneInfo("Asia/Shanghai"), //这里指定了添加周期性job时的时区
                                 // RecurringJobTimeZone = TimeZoneInfo.Local
                                 // CheckHttpResponseStatusCode = code => (int)code < 400   //===》(default)
                             })
@@ -224,6 +234,21 @@ namespace BasicsServices.Api
                             .UseDashboardMetric(DashboardMetrics.RetriesCount)
                             .UseDashboardMetric(DashboardMetrics.FailedCount)
                             .UseDashboardMetric(DashboardMetrics.ServerCount);
+        }
+
+        /// <summary>
+        /// 服务器任务配置
+        /// </summary>
+        /// <param name="backgroundJobServerOptions"></param>
+        private void HangfirJobOptions(BackgroundJobServerOptions backgroundJobServerOptions)
+        {
+            backgroundJobServerOptions.ServerTimeout = TimeSpan.FromMinutes(4);
+            backgroundJobServerOptions.SchedulePollingInterval = TimeSpan.FromSeconds(1);//秒级任务需要配置短点，一般任务可以配置默认时间，默认15秒
+            backgroundJobServerOptions.ShutdownTimeout = TimeSpan.FromMinutes(30);//超时时间
+            backgroundJobServerOptions.Queues = new[] { "default", "apis", "recurring" };//队列
+            backgroundJobServerOptions.WorkerCount = Math.Max(Environment.ProcessorCount, 40);//工作线程数，当前允许的最大线程，默认20
+            backgroundJobServerOptions.HeartbeatInterval = TimeSpan.FromMinutes(1);
+            backgroundJobServerOptions.ServerName = "YPH的定时任务平台";
         }
         #endregion
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -254,14 +279,14 @@ namespace BasicsServices.Api
             #endregion
 
             #region Hangfire
-            app.UseHangfireServer(new BackgroundJobServerOptions()
-            {
-                ServerTimeout = TimeSpan.FromMinutes(4),
-                SchedulePollingInterval = TimeSpan.FromSeconds(1),//秒级任务需要配置短点，一般任务可以配置默认时间，默认15秒
-                ShutdownTimeout = TimeSpan.FromMinutes(30),//超时时间
-                Queues = new[] { "default", "apis", "recurring" },//队列
-                WorkerCount = Math.Max(Environment.ProcessorCount, 40)//工作线程数，当前允许的最大线程，默认20
-            });
+            //app.UseHangfireServer(new BackgroundJobServerOptions()
+            //{
+            //    ServerTimeout = TimeSpan.FromMinutes(4),
+            //    SchedulePollingInterval = TimeSpan.FromSeconds(1),//秒级任务需要配置短点，一般任务可以配置默认时间，默认15秒
+            //    ShutdownTimeout = TimeSpan.FromMinutes(30),//超时时间
+            //    Queues = new[] { "default", "apis", "recurring" },//队列
+            //    WorkerCount = Math.Max(Environment.ProcessorCount, 40)//工作线程数，当前允许的最大线程，默认20
+            //});
             app.UseHangfireDashboard("/hangfire/index", new DashboardOptions
             {
                 Authorization = new[] { new BasicAuthAuthorizationFilter(new BasicAuthAuthorizationFilterOptions
@@ -277,7 +302,6 @@ namespace BasicsServices.Api
                             PasswordClear =  "adminispeihui"
                         }
                     }
-
                 }) }
             });
             #endregion

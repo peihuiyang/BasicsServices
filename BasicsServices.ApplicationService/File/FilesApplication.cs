@@ -1,6 +1,6 @@
 ﻿using BasicsServices.EntityDto.File;
 using BasicsServices.IApplicationService.File;
-using Peihui.Core.Response;
+using Peihui.Common.Base.UnifiedResponse;
 using System;
 using System.Collections.Generic;
 using System.IO;

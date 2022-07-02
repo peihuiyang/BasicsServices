@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,11 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Peihui.Common.Security">
-      <HintPath>..\..\..\OrgProject\my_linbrary\Peihui.Common.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Peihui.Core">
-      <HintPath>..\..\..\OrgProject\my_linbrary\Peihui.Core.dll</HintPath>
+    <Reference Include="Peihui.Common.Base">
+      <HintPath>..\..\MyLibrary\Peihui.Common.Base.dll</HintPath>
     </Reference>
   </ItemGroup>
 

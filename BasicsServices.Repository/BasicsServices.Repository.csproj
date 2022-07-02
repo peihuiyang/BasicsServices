@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <TargetFramework>netcoreapp5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Peihui.Common.Cache">
-      <HintPath>..\..\..\OrgProject\my_linbrary\Peihui.Common.Cache.dll</HintPath>
+    <Reference Include="Peihui.NoSql.MongoDBHelper">
+      <HintPath>..\..\MyLibrary\Peihui.NoSql.MongoDBHelper.dll</HintPath>
     </Reference>
   </ItemGroup>
 

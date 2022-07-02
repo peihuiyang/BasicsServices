@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Peihui.Core.CustomException;
+using Peihui.Common.ExceptionUtils.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,9 +62,9 @@ namespace BasicsServices.Api.Filters
             // =>非开发环境
             else
             {
-                if (context.Exception is ExceptionHandle)
+                if (context.Exception is CustomException)
                 {
-                    var ex = (ExceptionHandle)context.Exception;
+                    var ex = (CustomException)context.Exception;
                     var errMsg = new ErrorResponse(ex.ErrorMsg);
                     context.Result = new ObjectResult(errMsg) { StatusCode = ex.StatusCode };
                 }

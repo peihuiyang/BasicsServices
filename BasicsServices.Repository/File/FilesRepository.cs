@@ -1,7 +1,7 @@
 ﻿using BasicsServices.IRepository.File;
 using MongoDB.Bson;
 using MongoDB.Driver.GridFS;
-using Peihui.Common.Cache.MongoDB;
+using Peihui.NoSql.MongoDBHelper.DbInterface;
 using System;
 using System.Collections.Generic;
 using System.IO;

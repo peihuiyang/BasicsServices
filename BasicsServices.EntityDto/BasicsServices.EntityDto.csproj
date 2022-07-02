@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <TargetFramework>netcoreapp5.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -10,8 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CSRedisCore" Version="3.6.5" />
-    <PackageReference Include="MailKit" Version="2.8.0" />
+    <PackageReference Include="CSRedisCore" Version="3.8.3" />
+    <PackageReference Include="MailKit" Version="3.3.0" />
   </ItemGroup>
 
   <ItemGroup>

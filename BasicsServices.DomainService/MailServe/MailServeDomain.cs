@@ -4,9 +4,10 @@ using BasicsServices.IDomainService.MailServe;
 using MailKit.Security;
 using MimeKit;
 using MimeKit.Text;
-using Peihui.Code.DataCheck;
-using Peihui.Core.CustomException;
-using Peihui.Core.Response;
+using Peihui.Common.Base.DataCheck;
+using Peihui.Common.Base.UnifiedResponse;
+using Peihui.Common.ExceptionUtils.Entity;
+using Peihui.Common.ExceptionUtils.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -54,7 +55,7 @@ namespace BasicsServices.DomainService.MailServe
             }
             else
             {
-                throw new ExceptionHandle(new ExceptionEntity(400, "收件地址为空"));
+                throw new CustomException(new ExceptionEntity(400, "收件地址为空"));
             }
             //发送邮件的标题
             mimeMessage.Subject = mailSendDto.MailAddresseeInfo.Subject;
@@ -99,7 +100,7 @@ namespace BasicsServices.DomainService.MailServe
 
         public ResponseResult BatchSend(List<MailSendDto> mailSendDtos, UserContext userContext)
         {
-            throw new ExceptionHandle(new ExceptionEntity(400, "暂未实现该功能"));
+            throw new CustomException(new ExceptionEntity(400, "暂未实现该功能"));
         }
         /// <summary>
         /// 发送一封邮件（测试）
@@ -133,7 +134,7 @@ namespace BasicsServices.DomainService.MailServe
             }
             else
             {
-                throw new ExceptionHandle(new ExceptionEntity(400, "收件地址为空"));
+                throw new CustomException(new ExceptionEntity(400, "收件地址为空"));
             }
             //发送邮件的标题
             mimeMessage.Subject = mailMessageInput.Subject;

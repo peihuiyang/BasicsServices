@@ -1,9 +1,10 @@
 ﻿using BasicsServices.EntityDto.MailServe;
 using BasicsServices.IDomainService.MailServe;
-using Peihui.Code.DataCheck;
-using Peihui.Core.Config;
-using Peihui.Core.CustomException;
-using Peihui.Core.Response;
+using Peihui.Common.Base.DataCheck;
+using Peihui.Common.Base.UnifiedResponse;
+using Peihui.Common.ExceptionUtils.Entity;
+using Peihui.Common.ExceptionUtils.Exceptions;
+using Peihui.Common.JsonHelper;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -36,21 +37,21 @@ namespace BasicsServices.DomainService.MailServe
         {
             if (string.IsNullOrWhiteSpace(mailSendDto.MailFromInfo.From))
             {
-                throw new ExceptionHandle(new ExceptionEntity(500, "发件人为空"));
+                throw new CustomException(new ExceptionEntity(500, "发件人为空"));
             }
 
             if (mailSendDto.MailAddresseeInfo.ReceiveAddList == null)
             {
-                throw new ExceptionHandle(new ExceptionEntity(500, "收件人为空"));
+                throw new CustomException(new ExceptionEntity(500, "收件人为空"));
             }
 
             if (!DataRegExp.IsEmail(mailSendDto.MailFromInfo.From))
             {
-                throw new ExceptionHandle(new ExceptionEntity(500, "邮件服务器地址为空或地址出错"));
+                throw new CustomException(new ExceptionEntity(500, "邮件服务器地址为空或地址出错"));
             }
             if (mailSendDto.MailFromInfo.ServerType != MailServerTypeEnum.Smtp)
             {
-                throw new ExceptionHandle(new ExceptionEntity(400, "只支持SMTP方式发送邮件"));
+                throw new CustomException(new ExceptionEntity(400, "只支持SMTP方式发送邮件"));
             }
         }
 

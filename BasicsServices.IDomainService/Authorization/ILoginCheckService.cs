@@ -1,20 +1,22 @@
 ﻿using Peihui.Common.Base.UnifiedResponse;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace BasicsServices.IApplicationService.ApplicationCommon
+namespace BasicsServices.IDomainService.Authorization
 {
     /// <summary>
-    /// 登录校验封装接口
+    /// 登录校验接口
     /// </summary>
-    public interface IEnableLoginApplication
+    public interface ILoginCheckService
     {
         /// <summary>
-        /// 获取UserContext
+        /// 登录校验
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        UserContext GetUserContext(string token);
+        UserContext LoginCheck(string token);
     }
 }

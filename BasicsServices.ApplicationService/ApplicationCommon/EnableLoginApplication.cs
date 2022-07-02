@@ -1,6 +1,6 @@
 ﻿using BasicsServices.IApplicationService.ApplicationCommon;
-using Peihui.Common.Security.Authorization;
-using Peihui.Core.Response;
+using BasicsServices.IDomainService.Authorization;
+using Peihui.Common.Base.UnifiedResponse;
 using System;
 using System.Collections.Generic;
 using System.Text;

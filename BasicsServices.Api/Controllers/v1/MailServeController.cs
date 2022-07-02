@@ -6,7 +6,7 @@ using BasicsServices.EntityDto.MailServe;
 using BasicsServices.IApplicationService.MailServe;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Peihui.Core.Response;
+using Peihui.Common.Base.UnifiedResponse;
 
 namespace BasicsServices.Api.Controllers.v1
 {

@@ -1,6 +1,6 @@
 ﻿using BasicsServices.EntityDto.MailServe;
 using BasicsServices.IApplicationService.MailServe;
-using Peihui.Core.Response;
+using Peihui.Common.Base.UnifiedResponse;
 using System;
 using System.Collections.Generic;
 using System.Text;

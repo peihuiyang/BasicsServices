@@ -1,8 +1,8 @@
 ﻿using BasicsServices.EntityDto.MailServe;
-using Peihui.Code.DataCheck;
-using Peihui.Core.Config;
-using Peihui.Core.CustomException;
-using Peihui.Core.EnDecrypt;
+using Peihui.Common.Base.Security;
+using Peihui.Common.ExceptionUtils.Entity;
+using Peihui.Common.ExceptionUtils.Exceptions;
+using Peihui.Common.JsonHelper;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,7 +22,7 @@ namespace BasicsServices.DomainService.CommonServices
         {
             string from = JsonConfigHelper.Configuration[string.Format("MailServe:From")];
             if(string.IsNullOrWhiteSpace(from))
-                throw new ExceptionHandle(new ExceptionEntity(400, "发件地址不能为空"));
+                throw new CustomException(new ExceptionEntity(400, "发件地址不能为空"));
             return from;
         }
         /// <summary>
@@ -33,7 +33,7 @@ namespace BasicsServices.DomainService.CommonServices
         {
             string FromName = JsonConfigHelper.Configuration[string.Format("MailServe:FromName")];
             if (string.IsNullOrWhiteSpace(FromName))
-                throw new ExceptionHandle(new ExceptionEntity(400, "发件人不能为空"));
+                throw new CustomException(new ExceptionEntity(400, "发件人不能为空"));
             return FromName;
         }
         /// <summary>
@@ -44,7 +44,7 @@ namespace BasicsServices.DomainService.CommonServices
         {
             string AccessCode = AesHelper.Decrypt(JsonConfigHelper.Configuration[string.Format("MailServe:AccessCode")]);
             if (string.IsNullOrWhiteSpace(AccessCode))
-                throw new ExceptionHandle(new ExceptionEntity(400, "校验码不能为空"));
+                throw new CustomException(new ExceptionEntity(400, "校验码不能为空"));
             return AccessCode;
         }
         /// <summary>
@@ -55,7 +55,7 @@ namespace BasicsServices.DomainService.CommonServices
         {
             string Host = JsonConfigHelper.Configuration[string.Format("MailServe:Host")];
             if (string.IsNullOrWhiteSpace(Host))
-                throw new ExceptionHandle(new ExceptionEntity(400, "服务器不能为空"));
+                throw new CustomException(new ExceptionEntity(400, "服务器不能为空"));
             return Host;
         }
         /// <summary>
@@ -71,7 +71,7 @@ namespace BasicsServices.DomainService.CommonServices
             }
             catch
             {
-                throw new ExceptionHandle(new ExceptionEntity(400, "校验码不能为空"));
+                throw new CustomException(new ExceptionEntity(400, "校验码不能为空"));
             }                
         }
     }

@@ -1,5 +1,5 @@
 ﻿using BasicsServices.EntityDto.MailServe;
-using Peihui.Core.Response;
+using Peihui.Common.Base.UnifiedResponse;
 using System;
 using System.Collections.Generic;
 using System.Text;

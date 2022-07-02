@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <TargetFramework>netcoreapp5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -14,8 +14,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Peihui.Core">
-      <HintPath>..\..\..\OrgProject\my_linbrary\Peihui.Core.dll</HintPath>
+    <Reference Include="Peihui.Cache.MyRedisHelper">
+      <HintPath>..\..\MyLibrary\Peihui.Cache.MyRedisHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Peihui.Common.Base">
+      <HintPath>..\..\MyLibrary\Peihui.Common.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Peihui.Common.ExceptionUtils">
+      <HintPath>..\..\MyLibrary\Peihui.Common.ExceptionUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Peihui.Common.JsonHelper">
+      <HintPath>..\..\MyLibrary\Peihui.Common.JsonHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Peihui.Common.StorageConfig">
+      <HintPath>..\..\MyLibrary\Peihui.Common.StorageConfig.dll</HintPath>
     </Reference>
   </ItemGroup>
 
