@@ -44,8 +44,6 @@ namespace BasicsServices.Api
         /// </summary>
         private static readonly List<string> _Assemblies = new List<string>()
         {
-            "Peihui.Common.Security",
-            "Peihui.Common.Cache",
             "BasicsServices.ApplicationService",
             "BasicsServices.DomainService",
             "BasicsServices.Repository"

@@ -6,7 +6,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;1591</NoWarn>
-    <DocumentationFile>D:\Workfile\MyProject\BasicsServices.Api\BasicsServices.Api\BasicsServices.Api.xml</DocumentationFile>
+    <DocumentationFile>E:\MyProject\BasicsServices.Api\BasicsServices.Api\BasicsServices.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -62,6 +62,9 @@
   <ItemGroup>
     <None Update="BasicsServices.Api.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
