@@ -1,4 +1,5 @@
 using Autofac;
+using BasicsServices.Api.Configuration.Helper;
 using BasicsServices.Api.Configuration.Swagger;
 using BasicsServices.Api.Filters;
 using BasicsServices.Api.RequestBody;
@@ -303,6 +304,11 @@ namespace BasicsServices.Api
                 }) }
             });
             #endregion
+
+            #region ×¢²áConsul·þÎñ
+            this.Configuration.ConsulRegister();
+            #endregion
+
             app.UseRouting();
 
             app.UseAuthorization();

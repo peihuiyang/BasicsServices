@@ -4,6 +4,17 @@
         <name>BasicsServices.Api</name>
     </assembly>
     <members>
+        <member name="T:BasicsServices.Api.Configuration.Helper.ConsulHelper">
+            <summary>
+            Consul帮助类
+            </summary>
+        </member>
+        <member name="M:BasicsServices.Api.Configuration.Helper.ConsulHelper.ConsulRegister(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Consul注册
+            </summary>
+            <param name="configuration"></param>
+        </member>
         <member name="T:BasicsServices.Api.Configuration.JsonOptions.DateTimeConverter">
             <summary>
             日期转换器
@@ -42,6 +53,17 @@
             </summary>
             <param name="swaggerDoc"></param>
             <param name="context"></param>
+        </member>
+        <member name="M:BasicsServices.Api.Controllers.HealthController.Check">
+            <summary>
+            健康检查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BasicsServices.Api.Controllers.HealthController.Test">
+            <summary>
+            测试
+            </summary>
         </member>
         <member name="M:BasicsServices.Api.Controllers.v1.MailServeController.#ctor(BasicsServices.IApplicationService.MailServe.IMailServeApplication)">
             <summary>

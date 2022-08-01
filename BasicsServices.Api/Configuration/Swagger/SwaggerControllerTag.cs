@@ -22,6 +22,7 @@ namespace BasicsServices.Api.Configuration.Swagger
             swaggerDoc.Tags = new List<OpenApiTag>
             {
                 //添加控制器类描述
+                new OpenApiTag{ Name = "Health",Description = "健康检查" },
                 new OpenApiTag{ Name = "MailServe",Description = "邮件服务" },
                 new OpenApiTag{ Name = "UploadFile",Description = "文件服务" },
             };
