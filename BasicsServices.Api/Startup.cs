@@ -8,7 +8,7 @@ using Hangfire.Console;
 using Hangfire.Dashboard;
 using Hangfire.Dashboard.BasicAuthorization;
 using Hangfire.HttpJob;
-using Hangfire.Redis;
+using Hangfire.MySql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Transactions;
 using TimeZoneConverter;
 
 namespace BasicsServices.Api
@@ -187,18 +188,17 @@ namespace BasicsServices.Api
             //}));
 
             globalConfiguration
-                            .UseRedisStorage(ConnConfig.GetConnectionString("Timing_Task"), new RedisStorageOptions
+                            .UseStorage(new MySqlStorage(ConnConfig.GetConnectionString("Timing_Task"), new MySqlStorageOptions
                             {
-                                // 成功列表中的最大可见后台作业
-                                SucceededListSize = 10000,
-                                // 删除列表中的最大可见后台作业
-                                DeletedListSize = 5000,
-                                InvisibilityTimeout = TimeSpan.FromHours(3),
-                                // 任务过期检查频率
-                                ExpiryCheckInterval = TimeSpan.FromHours(1),
-                                Prefix = "hangfire:", // 前缀
-                                Db = 10
-                            })
+                                TransactionIsolationLevel = IsolationLevel.ReadCommitted,
+                                QueuePollInterval = TimeSpan.FromSeconds(15),
+                                JobExpirationCheckInterval = TimeSpan.FromHours(1),
+                                CountersAggregateInterval = TimeSpan.FromMinutes(5),
+                                PrepareSchemaIfNecessary = true,
+                                DashboardJobListLimit = 50000,
+                                TransactionTimeout = TimeSpan.FromMinutes(1),
+                                TablesPrefix = "Hangfire"
+                            }))
                             .UseConsole(new ConsoleOptions()
                             {
                                 BackgroundColor = "#A9F5D0"

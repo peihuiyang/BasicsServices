@@ -1,0 +1,466 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Peihui.Common.Base</name>
+    </assembly>
+    <members>
+        <member name="T:Peihui.Common.Base.DataCheck.DataCheck">
+            <summary>
+            数据验证
+            </summary>
+        </member>
+        <member name="M:Peihui.Common.Base.DataCheck.DataCheck.CompanyDate(System.String,System.String)">
+            <summary>
+            日期比较，date1>date2返回false
+            </summary>
+            <param name="date1"></param>
+            <param name="date2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.DataCheck.DataCheck.IsDate(System.String)">
+            <summary>
+            检验一个字符串是不是时间格式
+            </summary>
+            <param name="strDate"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Peihui.Common.Base.DataCheck.DataCompute">
+            <summary>
+            值计算类
+            </summary>
+        </member>
+        <member name="M:Peihui.Common.Base.DataCheck.DataCompute.GetGender(System.String)">
+            <summary>
+            根据身份证号获取性别
+            </summary>
+            <param name="IDCardNo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.DataCheck.DataCompute.GetBirthday(System.String)">
+            <summary>
+            根据身份证号获取生日
+            </summary>
+            <param name="IDCardNo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.DataCheck.DataCompute.GetAge(System.String)">
+            <summary>
+            根据生日获取当前年龄
+            </summary>
+            <param name="birthday"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Peihui.Common.Base.DataCheck.DataHandle">
+            <summary>
+            功能描述    ：处理/格式化数据
+            创 建 者    ：Yang Peihui
+            创建日期    ：2020-09-21 16:16:33 
+            </summary>
+        </member>
+        <member name="M:Peihui.Common.Base.DataCheck.DataHandle.HandleDecimal(System.String)">
+            <summary>
+            将字符串转换为decimal
+            </summary>
+            <param name="ImportData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.DataCheck.DataHandle.HandleInt(System.String)">
+            <summary>
+            将字符串转换为int
+            </summary>
+            <param name="ImportData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.DataCheck.DataHandle.HandleDate(System.String,System.String)">
+            <summary>
+            自定义转换日期格式
+            </summary>
+            <param name="date"></param>
+            <param name="tag">错误对象</param>
+            <returns></returns>
+        </member>
+        <member name="T:Peihui.Common.Base.DataCheck.DataRegExp">
+            <summary>
+            数据正则校验
+            </summary>
+        </member>
+        <member name="M:Peihui.Common.Base.DataCheck.DataRegExp.IsMobilePhone(System.String)">
+            <summary>
+            验证手机号
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.DataCheck.DataRegExp.IsIDCardNo(System.String)">
+            <summary>
+            检验身份证号
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.DataCheck.DataRegExp.IsEmail(System.String)">
+            <summary>
+            检验邮箱
+            </summary>
+            <param name="input"></param>
+            <returns>true if the regular expression finds a match; otherwise, false.</returns>
+        </member>
+        <member name="M:Peihui.Common.Base.DataCheck.DataRegExp.ReplaceString(System.String,System.String)">
+            <summary>
+            过滤指定的字符
+            </summary>
+            <param name="str">原有的字符串</param>
+            <param name="match">匹配字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.Extension.EnumExtension.GetDescription(System.Enum)">
+            <summary>
+            获取枚举描述特性值
+            </summary>
+            <param name="enumerationValue">枚举值</param>
+            <returns>枚举值的描述</returns>
+        </member>
+        <member name="M:Peihui.Common.Base.Extension.EnumExtension.GetDescriptions(System.Enum,System.String)">
+            <summary>
+            获取位域枚举的描述，多个按分隔符组合
+            </summary>
+        </member>
+        <member name="M:Peihui.Common.Base.Extension.EnumExtension.TryParse``1(System.String)">
+            <summary>
+            字符串转为枚举
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Peihui.Common.Base.Extension.HttpExtension">
+            <summary>
+            Http请求拓展工具类
+            </summary>
+        </member>
+        <member name="M:Peihui.Common.Base.Extension.HttpExtension.SetQueryParamToUrl``1(``0)">
+            <summary>
+            包装Http -- GET请求的URL参数
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="itemInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.Extension.HttpExtension.GetQueryStringToUrl(System.String)">
+            <summary>
+            根据URL获取查询参数
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Peihui.Common.Base.Helper.GuidHelper">
+            <summary>
+            生成Guid帮助类
+            </summary>
+        </member>
+        <member name="M:Peihui.Common.Base.Helper.GuidHelper.GenerateComb(Peihui.Common.Base.Helper.GuidHelper.SequentialGuidType)">
+            <summary>
+            获取有序的唯一ID。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Peihui.Common.Base.Helper.GuidHelper.SequentialGuidGenerator">
+            <summary>
+            根据枚举生成不同的有序GUID
+            http://www.codeproject.com/Articles/388157/GUIDs-as-fast-primary-keys-under-multiple-database
+            </summary>
+        </member>
+        <member name="T:Peihui.Common.Base.Helper.GuidHelper.SequentialGuidType">
+            <summary>
+            有序GUID的类型（sqlServer用AtEnd，mysql用AsString或者AsBinary，oracle用AsBinary，postgresql用AsString或者AsBinary）
+            </summary>
+        </member>
+        <member name="T:Peihui.Common.Base.LinqExtend.DistinctExtension">
+            <summary>
+            去重
+            </summary>
+        </member>
+        <member name="T:Peihui.Common.Base.LinqExtend.IEnumerableExtension">
+            <summary>
+            IEnumerable拓展
+            </summary>
+        </member>
+        <member name="M:Peihui.Common.Base.LinqExtend.IEnumerableExtension.IsNullOrNotData``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            校验数据是否为空
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <returns>true:为空</returns>
+        </member>
+        <member name="T:Peihui.Common.Base.Security.AesHelper">
+            <summary>
+            AES 加密算法
+            </summary>
+        </member>
+        <member name="F:Peihui.Common.Base.Security.AesHelper.PublicKey">
+            <summary>
+            默认密钥--固定32位，否则报错
+            </summary>
+        </member>
+        <member name="F:Peihui.Common.Base.Security.AesHelper.DefaultIV">
+            <summary>
+            默认向量
+            </summary>
+        </member>
+        <member name="M:Peihui.Common.Base.Security.AesHelper.Encrypt(System.String)">
+            <summary>
+            加密
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.Security.AesHelper.Decrypt(System.String)">
+            <summary>
+            解密
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.Security.Md5Helper.ToMd5(System.String)">
+            <summary>
+            UTF-8编码的直接MD5方法，返回MD5的字节数组
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.Security.Md5Helper.To32Md5(System.String,Peihui.Common.Base.Security.StrCase,System.Boolean)">
+            <summary>
+            返回32位的MD5
+            </summary>
+            <param name="str"></param>
+            <param name="strCase"></param>
+            <param name="isIncludHyphen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.Security.Md5Helper.Get32Md5(System.String,Peihui.Common.Base.Security.StrCase,System.Boolean)">
+            <summary>
+            生成32位MD5
+            </summary>
+            <param name="strParam"></param>
+            <param name="strCase"></param>
+            <param name="isIncludHyphen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.Security.Md5Helper.Get32Md5(System.Byte[],Peihui.Common.Base.Security.StrCase,System.Boolean)">
+            <summary>
+            生成32位MD5 
+            </summary>
+            <param name="bytes"></param>
+            <param name="strCase"></param>
+            <param name="isIncludHyphen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.Security.Md5Helper.To16Md5(System.String,Peihui.Common.Base.Security.StrCase,System.Boolean)">
+            <summary>
+            返回16位的MD5
+            </summary>
+            <param name="str"></param>
+            <param name="strCase"></param>
+            <param name="isIncludHyphen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.Security.Md5Helper.Get16Md5(System.String,Peihui.Common.Base.Security.StrCase,System.Boolean)">
+            <summary>
+            生成16位MD5
+            </summary>
+            <param name="strParam"></param>
+            <param name="strCase"></param>
+            <param name="isIncludHyphen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.Security.Md5Helper.Get16Md5(System.Byte[],Peihui.Common.Base.Security.StrCase,System.Boolean)">
+            <summary>
+            生成16位MD5 
+            </summary>
+            <param name="bytes"></param>
+            <param name="strCase"></param>
+            <param name="isIncludHyphen"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Peihui.Common.Base.Security.PasswordHelper">
+            <summary>
+            密码管理
+            </summary>
+        </member>
+        <member name="M:Peihui.Common.Base.Security.PasswordHelper.Encrypting(System.String,System.String)">
+            <summary>
+            获取加密字符串 
+            </summary>
+            <param name="inputStr">明文字符串</param>
+            <param name="mixStr">混淆字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.Security.PasswordHelper.EncryptingExt(System.String,System.String)">
+            <summary>
+            获取加密字符串（传入的字符串已经做过一次MD5） 
+            </summary>
+            <param name="inputStr">做过一次MD5的字符串</param>
+            <param name="mixStr">混淆字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.Security.PasswordHelper.CreateRandomPassWord(System.String)">
+            <summary>
+            获取随机密码
+            </summary>
+            <param name="randomStr"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Peihui.Common.Base.Security.SimpleEncryp">
+            <summary>
+            简单的加减密
+            </summary>
+        </member>
+        <member name="M:Peihui.Common.Base.Security.SimpleEncryp.Encryption(System.String)">
+            <summary>
+            加密
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.Security.SimpleEncryp.Decrypt(System.String)">
+            <summary>
+            解密
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Peihui.Common.Base.StringExtend.RandomCode">
+            <summary>
+            随机码基础类
+            </summary>
+        </member>
+        <member name="M:Peihui.Common.Base.StringExtend.RandomCode.GetRandomCode(System.Int32)">
+            <summary>
+            生成随机码[0-9A-Za-z]
+            </summary>
+            <param name="codeCount">长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.StringExtend.RandomCode.GetRandomCode(System.String,System.Int32)">
+            <summary>
+            生成随机码
+            </summary>
+            <param name="allChar">字符集</param>
+            <param name="codeCount">长度</param>
+            <returns></returns>
+        </member>
+        <member name="T:Peihui.Common.Base.StringExtend.StringHelper">
+            <summary>
+            字符串帮助类
+            </summary>
+        </member>
+        <member name="M:Peihui.Common.Base.StringExtend.StringHelper.TrimSpace(System.String)">
+            <summary>
+            描述：去除空格、回车
+            </summary>
+            <param name="source"></param>
+        </member>
+        <member name="M:Peihui.Common.Base.StringExtend.StringHelper.StringJoinBy``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            连接指定数组的元素或集合的成员，在每个元素或成员之间使用指定的分隔符。
+            </summary>
+            <param name="strings"></param>
+            <param name="separator"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.StringExtend.StringHelper.IsNullOrSpaceEmpty(System.String)">
+            <summary>
+            校验字符串是否为空
+            </summary>
+            <param name="source"></param>
+            <returns>true：是</returns>
+        </member>
+        <member name="T:Peihui.Common.Base.UnifiedResponse.ResponseResult">
+            <summary>
+            消息响应类
+            </summary>
+        </member>
+        <member name="P:Peihui.Common.Base.UnifiedResponse.ResponseResult.Status">
+            <summary>状态:1-成功；0-缺省; -1失败</summary>
+        </member>
+        <member name="P:Peihui.Common.Base.UnifiedResponse.ResponseResult.Message">
+            <summary>消息内容</summary>
+        </member>
+        <member name="M:Peihui.Common.Base.UnifiedResponse.ResponseResult.Default(System.String)">
+            <summary>响应消息封装类</summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.UnifiedResponse.ResponseResult.Success(System.String)">
+            <summary>响应消息封装类</summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.UnifiedResponse.ResponseResult.Error(System.String)">
+            <summary>响应消息封装类</summary>
+            <param name="errorMessage"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Peihui.Common.Base.UnifiedResponse.ResponseResult`1">
+            <summary>
+            请求返回泛型
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Peihui.Common.Base.UnifiedResponse.ResponseResult`1.Data">
+            <summary>业务数据</summary>
+        </member>
+        <member name="M:Peihui.Common.Base.UnifiedResponse.ResponseResult`1.Default">
+            <summary>Http 响应消息封装类</summary>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.UnifiedResponse.ResponseResult`1.Success(`0,System.String)">
+            <summary>Http 响应消息封装类</summary>
+            <param name="t"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.UnifiedResponse.ResponseResult`1.Error(System.String)">
+            <summary>HTTP 响应消息封装类</summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.UnifiedResponse.ResponseResult`1.Error(`0,System.String)">
+            <summary>Http 响应消息封装类</summary>
+            <param name="t"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Peihui.Common.Base.UnifiedResponse.UserContext">
+            <summary>
+            商城管理员登录信息
+            </summary>
+        </member>
+        <member name="P:Peihui.Common.Base.UnifiedResponse.UserContext.BizId">
+            <summary>
+            标识
+            </summary>
+        </member>
+        <member name="P:Peihui.Common.Base.UnifiedResponse.UserContext.Code">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Peihui.Common.Base.UnifiedResponse.UserContext.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Peihui.Common.Base.UnifiedResponse.UserContext.OtherMsg">
+            <summary>
+            权限
+            </summary>
+        </member>
+        <member name="P:Peihui.Common.Base.UnifiedResponse.UserContext.Token">
+            <summary>
+            Token值
+            </summary>
+        </member>
+    </members>
+</doc>

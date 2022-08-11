@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <Reference Include="Peihui.NoSql.MongoDBHelper">
-      <HintPath>..\..\MyLibrary\Peihui.NoSql.MongoDBHelper.dll</HintPath>
+      <HintPath>..\package\Peihui.NoSql.MongoDBHelper.dll</HintPath>
     </Reference>
   </ItemGroup>
 

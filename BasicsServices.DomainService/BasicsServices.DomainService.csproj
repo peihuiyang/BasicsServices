@@ -15,19 +15,19 @@
 
   <ItemGroup>
     <Reference Include="Peihui.Cache.MyRedisHelper">
-      <HintPath>..\..\MyLibrary\Peihui.Cache.MyRedisHelper.dll</HintPath>
+      <HintPath>..\package\Peihui.Cache.MyRedisHelper.dll</HintPath>
     </Reference>
     <Reference Include="Peihui.Common.Base">
-      <HintPath>..\..\MyLibrary\Peihui.Common.Base.dll</HintPath>
+      <HintPath>..\package\Peihui.Common.Base.dll</HintPath>
     </Reference>
     <Reference Include="Peihui.Common.ExceptionUtils">
-      <HintPath>..\..\MyLibrary\Peihui.Common.ExceptionUtils.dll</HintPath>
+      <HintPath>..\package\Peihui.Common.ExceptionUtils.dll</HintPath>
     </Reference>
     <Reference Include="Peihui.Common.JsonHelper">
-      <HintPath>..\..\MyLibrary\Peihui.Common.JsonHelper.dll</HintPath>
+      <HintPath>..\package\Peihui.Common.JsonHelper.dll</HintPath>
     </Reference>
     <Reference Include="Peihui.Common.StorageConfig">
-      <HintPath>..\..\MyLibrary\Peihui.Common.StorageConfig.dll</HintPath>
+      <HintPath>..\package\Peihui.Common.StorageConfig.dll</HintPath>
     </Reference>
   </ItemGroup>
 

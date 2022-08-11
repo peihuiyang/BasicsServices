@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
 	  <TargetFramework>netcoreapp5.0</TargetFramework>
@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <Reference Include="Peihui.Common.Base">
-      <HintPath>..\..\MyLibrary\Peihui.Common.Base.dll</HintPath>
+      <HintPath>..\package\Peihui.Common.Base.dll</HintPath>
     </Reference>
   </ItemGroup>
 
