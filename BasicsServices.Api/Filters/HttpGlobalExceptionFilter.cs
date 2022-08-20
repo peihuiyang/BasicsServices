@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Peihui.Common.Base.UnifiedResponse;
 using Peihui.Common.ExceptionUtils.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -15,7 +18,7 @@ namespace BasicsServices.Api.Filters
     /// <summary>
     /// 全局异常过滤器
     /// </summary>
-    public class HttpGlobalExceptionFilter : IExceptionFilter
+    public class HttpGlobalExceptionFilter : IAsyncExceptionFilter
     {
         /// <summary>
         /// 日志
@@ -38,26 +41,14 @@ namespace BasicsServices.Api.Filters
             _logger = logger.CreateLogger<HttpGlobalExceptionFilter>();
         }
 
-        /// <summary>
-        /// exception
-        /// </summary>
-        /// <param name="context">异常上下文</param>
-        public void OnException(ExceptionContext context)
+        public Task OnExceptionAsync(ExceptionContext context)
         {
-            // =>初始化Log4net日志
-            //ILog log = LogManager.GetLogger(Startup.Repository.Name, controller.ToString());
-
             // =>开发环境
             if (!_env.IsDevelopment())
             {
                 _logger.LogError($"\r\n全局异常处理程序捕获到异常：\r\n错误消息：{context.Exception.Message}\r\n错误堆栈：{context.Exception.StackTrace}");
 
                 _logger.LogError(context.Exception.ToString());
-                //var JsonMessage = new ErrorResponse("未知错误,请重试");
-                //JsonMessage.DeveloperMessage = context.Exception;
-                //context.Result = new ApplicationErrorResult(JsonMessage);
-                //context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                //context.ExceptionHandled = true;
             }
             // =>非开发环境
             else
@@ -65,62 +56,22 @@ namespace BasicsServices.Api.Filters
                 if (context.Exception is CustomException)
                 {
                     var ex = (CustomException)context.Exception;
-                    var errMsg = new ErrorResponse(ex.ErrorMsg);
-                    context.Result = new ObjectResult(errMsg) { StatusCode = ex.StatusCode };
+                    var errInfo = ResponseResult.Default(ex.ErrorMsg,ex.StatusCode);
+                    context.Result = new ObjectResult(errInfo) { StatusCode = (int)HttpStatusCode.OK };
                 }
                 // =>无权访问异常
                 else if (context.Exception is UnauthorizedAccessException)
                 {
-                    context.Result = new ObjectResult(new ErrorResponse("无权访问")) { StatusCode = (int)HttpStatusCode.Unauthorized };
+                    context.Result = new ObjectResult(ResponseResult.Default("权限不足无法访问")) { StatusCode = (int)HttpStatusCode.Unauthorized };
                 }
                 else
                 {
-                    //var json = new ErrorResponse("未知错误,请联系管理员");
                     var ex = context.Exception;
-                    //if (_env.IsDevelopment())
-                    //    json.DeveloperMessage = context.Exception;
-                    context.Result = new ObjectResult(new ErrorResponse(ex.Message)) { StatusCode = (int)HttpStatusCode.BadRequest };
+                    context.Result = new ObjectResult(ResponseResult.Default(ex.Message)) { StatusCode = (int)HttpStatusCode.BadRequest };
                 }
-                //context.Result = new ObjectResult(json) { StatusCode = context.HttpContext.Response.StatusCode};
-
-
-                context.ExceptionHandled = true;
             }
-        }
-
-        /// <summary>
-        /// 错误结果类
-        /// </summary>
-        public class ApplicationErrorResult : ObjectResult
-        {
-            /// <summary>
-            /// 构造函数
-            /// </summary>
-            /// <param name="value"></param>
-            public ApplicationErrorResult(object value) : base(value)
-            {
-                StatusCode = (int)HttpStatusCode.InternalServerError;
-            }
-        }
-
-        /// <summary>
-        /// 错误Response
-        /// </summary>
-        public class ErrorResponse
-        {
-            /// <summary>
-            /// 构造函数
-            /// </summary>
-            /// <param name="msg"></param>
-            public ErrorResponse(string msg)
-            {
-                Message = msg;
-            }
-
-            /// <summary>
-            /// 消息内容
-            /// </summary>
-            public string Message { get; set; }
+            context.ExceptionHandled = true;
+            return Task.CompletedTask;
         }
     }
 }

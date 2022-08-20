@@ -376,20 +376,47 @@
             <param name="source"></param>
             <returns>true：是</returns>
         </member>
+        <member name="M:Peihui.Common.Base.StringExtend.StringHelper.SetFixedLengthString(System.Int64,System.Int32)">
+            <summary>
+            固定长度位数的数字字符串(不足位数补0)
+            </summary>
+            <param name="num">数字</param>
+            <param name="length">长度，默认是4</param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.StringExtend.StringHelper.SubStartString(System.String,System.Int32)">
+            <summary>
+            从起始截字符串
+            </summary>
+            <param name="str"></param>
+            <param name="maxLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Peihui.Common.Base.StringExtend.StringHelper.SubEndString(System.String,System.Int32)">
+            <summary>
+            从结束截字符串
+            </summary>
+            <param name="str"></param>
+            <param name="maxLength"></param>
+            <returns></returns>
+        </member>
         <member name="T:Peihui.Common.Base.UnifiedResponse.ResponseResult">
             <summary>
             消息响应类
             </summary>
         </member>
         <member name="P:Peihui.Common.Base.UnifiedResponse.ResponseResult.Status">
-            <summary>状态:1-成功；0-缺省; -1失败</summary>
+            <summary>
+            返回状态
+            </summary>
         </member>
         <member name="P:Peihui.Common.Base.UnifiedResponse.ResponseResult.Message">
             <summary>消息内容</summary>
         </member>
-        <member name="M:Peihui.Common.Base.UnifiedResponse.ResponseResult.Default(System.String)">
+        <member name="M:Peihui.Common.Base.UnifiedResponse.ResponseResult.Default(System.String,System.Int32)">
             <summary>响应消息封装类</summary>
             <param name="message"></param>
+            <param name="status"></param>
             <returns></returns>
         </member>
         <member name="M:Peihui.Common.Base.UnifiedResponse.ResponseResult.Success(System.String)">
@@ -411,18 +438,13 @@
         <member name="P:Peihui.Common.Base.UnifiedResponse.ResponseResult`1.Data">
             <summary>业务数据</summary>
         </member>
-        <member name="M:Peihui.Common.Base.UnifiedResponse.ResponseResult`1.Default">
+        <member name="M:Peihui.Common.Base.UnifiedResponse.ResponseResult`1.Default(`0,System.String,System.Int32)">
             <summary>Http 响应消息封装类</summary>
             <returns></returns>
         </member>
         <member name="M:Peihui.Common.Base.UnifiedResponse.ResponseResult`1.Success(`0,System.String)">
             <summary>Http 响应消息封装类</summary>
             <param name="t"></param>
-            <param name="message"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Peihui.Common.Base.UnifiedResponse.ResponseResult`1.Error(System.String)">
-            <summary>HTTP 响应消息封装类</summary>
             <param name="message"></param>
             <returns></returns>
         </member>
