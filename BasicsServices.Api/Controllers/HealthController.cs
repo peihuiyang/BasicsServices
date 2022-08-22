@@ -28,7 +28,7 @@ namespace BasicsServices.Api.Controllers
         public void Test()
         {
             var ip = HttpContext.Connection.LocalIpAddress.ToString();
-            Response.WriteAsync($"The IP is :{ip}, The CurTime is :{DateTime.Now:yyyy-MM-dd HH:mm:ss},From BasicsServicesApi_HealthController.");
+            Response.WriteAsync($"The IP is :【{ip}:{HttpContext.Connection.LocalPort}】, The CurTime is :{DateTime.Now:yyyy-MM-dd HH:mm:ss},From BasicsServicesApi_HealthController.");
         }
     }
 }
