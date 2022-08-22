@@ -6,7 +6,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Peihui.Common.Base.UnifiedResponse;
+using Peihui.Common.EntityDto.Command.LogInfo;
 using Peihui.Common.ExceptionUtils.Exceptions;
+using Peihui.Common.RabbitMqHelper.Factory;
+using Peihui.Common.RabbitMqHelper.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +72,23 @@ namespace BasicsServices.Api.Filters
                     var ex = context.Exception;
                     context.Result = new ObjectResult(ResponseResult.Default(ex.Message)) { StatusCode = (int)HttpStatusCode.BadRequest };
                 }
+            }
+            try
+            {
+                var mq = RabbitMQFactory.GetClient(MqOptionExtension.SetMqOptions());
+                mq.PublishEvent(new ElExceptionCommand()
+                {
+                    ProjectName = "BasicService",
+                    ExceptionInfo = context.Exception,
+                    LogLevelType = "Exception",
+                    LogTags = new string[] { "异常处理" },
+                    SourceName = nameof(HttpGlobalExceptionFilter)
+                });
+
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError($"记录日志失败，原因：{ex.Message}");
             }
             context.ExceptionHandled = true;
             return Task.CompletedTask;

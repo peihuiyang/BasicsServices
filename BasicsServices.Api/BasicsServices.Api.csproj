@@ -44,14 +44,38 @@
     <Reference Include="Peihui.Common.Base">
       <HintPath>..\package\Peihui.Common.Base.dll</HintPath>
     </Reference>
+    <Reference Include="Peihui.Common.EntityDto">
+      <HintPath>..\package\Peihui.Common.EntityDto.dll</HintPath>
+    </Reference>
     <Reference Include="Peihui.Common.ExceptionUtils">
       <HintPath>..\package\Peihui.Common.ExceptionUtils.dll</HintPath>
     </Reference>
     <Reference Include="Peihui.Common.JsonHelper">
       <HintPath>..\package\Peihui.Common.JsonHelper.dll</HintPath>
     </Reference>
+    <Reference Include="Peihui.Common.RabbitMqHelper">
+      <HintPath>..\package\Peihui.Common.RabbitMqHelper.dll</HintPath>
+    </Reference>
     <Reference Include="Peihui.Common.StorageConfig">
       <HintPath>..\package\Peihui.Common.StorageConfig.dll</HintPath>
+    </Reference>
+    <Reference Include="RabbitMQ.Client">
+      <HintPath>..\package\Zaabee.RabbitMQ\RabbitMQ.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Zaabee.Extensions">
+      <HintPath>..\package\Zaabee.RabbitMQ\Zaabee.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Zaabee.NewtonsoftJson">
+      <HintPath>..\package\Zaabee.RabbitMQ\Zaabee.NewtonsoftJson.dll</HintPath>
+    </Reference>
+    <Reference Include="Zaabee.RabbitMQ">
+      <HintPath>..\package\Zaabee.RabbitMQ\Zaabee.RabbitMQ.dll</HintPath>
+    </Reference>
+    <Reference Include="Zaabee.RabbitMQ.Abstractions">
+      <HintPath>..\package\Zaabee.RabbitMQ\Zaabee.RabbitMQ.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Zaabee.Serializer.Abstractions">
+      <HintPath>..\package\Zaabee.RabbitMQ\Zaabee.Serializer.Abstractions.dll</HintPath>
     </Reference>
   </ItemGroup>
 
