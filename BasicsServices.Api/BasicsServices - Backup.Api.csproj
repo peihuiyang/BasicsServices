@@ -2,11 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp5.0</TargetFramework>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;1591</NoWarn>
-    <DocumentationFile>E:\MyProject\BasicsServices.Api\BasicsServices.Api\BasicsServices.Api.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +18,7 @@
     <PackageReference Include="Hangfire.HttpJob" Version="3.7.0" />
     <PackageReference Include="Hangfire.HttpJob.Agent" Version="1.4.6" />
     <PackageReference Include="Hangfire.HttpJob.Client" Version="1.2.8" />
+    <PackageReference Include="Hangfire.MySqlStorage" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.7" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
@@ -40,16 +42,40 @@
 
   <ItemGroup>
     <Reference Include="Peihui.Common.Base">
-      <HintPath>..\..\MyLibrary\Peihui.Common.Base.dll</HintPath>
+      <HintPath>..\package\Peihui.Common.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Peihui.Common.EntityDto">
+      <HintPath>..\package\Peihui.Common.EntityDto.dll</HintPath>
     </Reference>
     <Reference Include="Peihui.Common.ExceptionUtils">
-      <HintPath>..\..\MyLibrary\Peihui.Common.ExceptionUtils.dll</HintPath>
+      <HintPath>..\package\Peihui.Common.ExceptionUtils.dll</HintPath>
     </Reference>
     <Reference Include="Peihui.Common.JsonHelper">
-      <HintPath>..\..\MyLibrary\Peihui.Common.JsonHelper.dll</HintPath>
+      <HintPath>..\package\Peihui.Common.JsonHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Peihui.Common.RabbitMqHelper">
+      <HintPath>..\package\Peihui.Common.RabbitMqHelper.dll</HintPath>
     </Reference>
     <Reference Include="Peihui.Common.StorageConfig">
-      <HintPath>..\..\MyLibrary\Peihui.Common.StorageConfig.dll</HintPath>
+      <HintPath>..\package\Peihui.Common.StorageConfig.dll</HintPath>
+    </Reference>
+    <Reference Include="RabbitMQ.Client">
+      <HintPath>..\package\Zaabee.RabbitMQ\RabbitMQ.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Zaabee.Extensions">
+      <HintPath>..\package\Zaabee.RabbitMQ\Zaabee.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Zaabee.NewtonsoftJson">
+      <HintPath>..\package\Zaabee.RabbitMQ\Zaabee.NewtonsoftJson.dll</HintPath>
+    </Reference>
+    <Reference Include="Zaabee.RabbitMQ">
+      <HintPath>..\package\Zaabee.RabbitMQ\Zaabee.RabbitMQ.dll</HintPath>
+    </Reference>
+    <Reference Include="Zaabee.RabbitMQ.Abstractions">
+      <HintPath>..\package\Zaabee.RabbitMQ\Zaabee.RabbitMQ.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Zaabee.Serializer.Abstractions">
+      <HintPath>..\package\Zaabee.RabbitMQ\Zaabee.Serializer.Abstractions.dll</HintPath>
     </Reference>
   </ItemGroup>
 
@@ -60,9 +86,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="BasicsServices.Api.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Dockerfile">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
