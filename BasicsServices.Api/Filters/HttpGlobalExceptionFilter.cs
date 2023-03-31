@@ -76,13 +76,19 @@ namespace BasicsServices.Api.Filters
             try
             {
                 var mq = RabbitMQFactory.GetClient(MqOptionExtension.SetMqOptions());
-                mq.PublishEvent(new ElExceptionCommand()
+                mq.PublishEvent(new ElExceptionsCommand()
                 {
-                    ProjectName = "BasicService",
-                    ExceptionInfo = context.Exception,
-                    LogLevelType = "Exception",
-                    LogTags = new string[] { "异常处理" },
-                    SourceName = nameof(HttpGlobalExceptionFilter)
+                    ExceptionCommands = new List<ElExceptionCommand>()
+                    {
+                        new ElExceptionCommand()
+                        {
+                            ProjectName = "BasicService",
+                            ExceptionInfo = context.Exception,
+                            LogLevelType = "Exception",
+                            LogTags = new string[] { "异常处理" },
+                            SourceName = nameof(HttpGlobalExceptionFilter)
+                        }
+                    }
                 });
 
             }

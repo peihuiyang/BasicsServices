@@ -46,6 +46,7 @@ namespace BasicsServices.Api
         /// </summary>
         private static readonly List<string> _Assemblies = new List<string>()
         {
+            "Peihui.NoSql.MongoDBHelper",
             "BasicsServices.ApplicationService",
             "BasicsServices.DomainService",
             "BasicsServices.Repository"
@@ -211,7 +212,7 @@ namespace BasicsServices.Api
                                 PauseJobButtonName = "暂停或开始",
                                 DashboardTitle = "任务管理",
                                 DashboardName = "后台任务管理",
-                                DashboardFooter = "后台任务管理V1.0.0.0",
+                                DashboardFooter = "后台任务管理V1.0.0.1",
                                 // 配置通知邮箱
                                 MailOption = new MailOption
                                 {
@@ -223,7 +224,7 @@ namespace BasicsServices.Api
                                 },
                                 DefaultRecurringQueueName = "default",
                                 DefaultBackGroundJobQueueName = "default",
-                                // RecurringJobTimeZone = TZConvert.GetTimeZoneInfo("Asia/Shanghai"), //这里指定了添加周期性job时的时区
+                                //RecurringJobTimeZone = TZConvert.GetTimeZoneInfo("Asia/Shanghai"), //这里指定了添加周期性job时的时区
                                 // RecurringJobTimeZone = TimeZoneInfo.Local
                                 // CheckHttpResponseStatusCode = code => (int)code < 400   //===》(default)
                             })
@@ -247,7 +248,7 @@ namespace BasicsServices.Api
             backgroundJobServerOptions.Queues = new[] { "default", "apis", "recurring" };//队列
             backgroundJobServerOptions.WorkerCount = Math.Max(Environment.ProcessorCount, 40);//工作线程数，当前允许的最大线程，默认20
             backgroundJobServerOptions.HeartbeatInterval = TimeSpan.FromMinutes(1);
-            backgroundJobServerOptions.ServerName = "YPH的定时任务平台";
+            backgroundJobServerOptions.ServerName = "YPH的定时任务平台" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
         }
         #endregion
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
