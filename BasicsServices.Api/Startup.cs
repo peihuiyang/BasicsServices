@@ -8,6 +8,7 @@ using Hangfire.Console;
 using Hangfire.Dashboard;
 using Hangfire.Dashboard.BasicAuthorization;
 using Hangfire.HttpJob;
+using Hangfire.Mongo;
 using Hangfire.MySql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -183,23 +184,27 @@ namespace BasicsServices.Api
         /// <param name="globalConfiguration"></param>
         private void HangfireConfiguration(IGlobalConfiguration globalConfiguration)
         {
+            // SqlServerStorage \  MySqlStorage
             //globalConfiguration.UseStorage(new SqlServerStorage("HangfireConnectionString", new SqlServerStorageOptions
             //{
-
+                                //TransactionIsolationLevel = IsolationLevel.ReadCommitted,
+                                //QueuePollInterval = TimeSpan.FromSeconds(15),
+                                //JobExpirationCheckInterval = TimeSpan.FromHours(1),
+                                //CountersAggregateInterval = TimeSpan.FromMinutes(5),
+                                //PrepareSchemaIfNecessary = true,
+                                //DashboardJobListLimit = 50000,
+                                //TransactionTimeout = TimeSpan.FromMinutes(1),
+                                //TablesPrefix = "Hangfire"
             //}));
 
             globalConfiguration
-                            .UseStorage(new MySqlStorage(ConnConfig.GetConnectionString("Timing_Task"), new MySqlStorageOptions
+                            .UseMongoStorage(ConnConfig.GetConnectionString("Timing_Task"), new MongoStorageOptions
                             {
-                                TransactionIsolationLevel = IsolationLevel.ReadCommitted,
                                 QueuePollInterval = TimeSpan.FromSeconds(15),
                                 JobExpirationCheckInterval = TimeSpan.FromHours(1),
                                 CountersAggregateInterval = TimeSpan.FromMinutes(5),
-                                PrepareSchemaIfNecessary = true,
-                                DashboardJobListLimit = 50000,
-                                TransactionTimeout = TimeSpan.FromMinutes(1),
-                                TablesPrefix = "Hangfire"
-                            }))
+                                ConnectionCheckTimeout = TimeSpan.FromMinutes(5),
+                            })
                             .UseConsole(new ConsoleOptions()
                             {
                                 BackgroundColor = "#A9F5D0"
