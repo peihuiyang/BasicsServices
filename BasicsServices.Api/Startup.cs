@@ -9,6 +9,8 @@ using Hangfire.Dashboard;
 using Hangfire.Dashboard.BasicAuthorization;
 using Hangfire.HttpJob;
 using Hangfire.Mongo;
+using Hangfire.Mongo.Migration.Strategies;
+using Hangfire.Mongo.Migration.Strategies.Backup;
 using Hangfire.MySql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -187,58 +189,62 @@ namespace BasicsServices.Api
             // SqlServerStorage \  MySqlStorage
             //globalConfiguration.UseStorage(new SqlServerStorage("HangfireConnectionString", new SqlServerStorageOptions
             //{
-                                //TransactionIsolationLevel = IsolationLevel.ReadCommitted,
-                                //QueuePollInterval = TimeSpan.FromSeconds(15),
-                                //JobExpirationCheckInterval = TimeSpan.FromHours(1),
-                                //CountersAggregateInterval = TimeSpan.FromMinutes(5),
-                                //PrepareSchemaIfNecessary = true,
-                                //DashboardJobListLimit = 50000,
-                                //TransactionTimeout = TimeSpan.FromMinutes(1),
-                                //TablesPrefix = "Hangfire"
+            //TransactionIsolationLevel = IsolationLevel.ReadCommitted,
+            //QueuePollInterval = TimeSpan.FromSeconds(15),
+            //JobExpirationCheckInterval = TimeSpan.FromHours(1),
+            //CountersAggregateInterval = TimeSpan.FromMinutes(5),
+            //PrepareSchemaIfNecessary = true,
+            //DashboardJobListLimit = 50000,
+            //TransactionTimeout = TimeSpan.FromMinutes(1),
+            //TablesPrefix = "Hangfire"
             //}));
-
             globalConfiguration
-                            .UseMongoStorage(ConnConfig.GetConnectionString("Timing_Task"), new MongoStorageOptions
-                            {
-                                QueuePollInterval = TimeSpan.FromSeconds(15),
-                                JobExpirationCheckInterval = TimeSpan.FromHours(1),
-                                CountersAggregateInterval = TimeSpan.FromMinutes(5),
-                                ConnectionCheckTimeout = TimeSpan.FromMinutes(5),
-                            })
-                            .UseConsole(new ConsoleOptions()
-                            {
-                                BackgroundColor = "#A9F5D0"
-                            })
-                            .UseHangfireHttpJob(new HangfireHttpJobOptions
-                            {
-                                AddHttpJobButtonName = "添加计划任务",
-                                AddRecurringJobHttpJobButtonName = "添加定时任务",
-                                EditRecurringJobButtonName = "编辑定时任务",
-                                PauseJobButtonName = "暂停或开始",
-                                DashboardTitle = "任务管理",
-                                DashboardName = "后台任务管理",
-                                DashboardFooter = "后台任务管理V1.0.0.1",
-                                // 配置通知邮箱
-                                MailOption = new MailOption
-                                {
-                                    Server = JsonConfigHelper.Configuration[string.Format("HangfireMail:Server")],
-                                    Port = Convert.ToInt32(JsonConfigHelper.Configuration[string.Format("HangfireMail:Port")]),
-                                    UseSsl = Convert.ToBoolean(JsonConfigHelper.Configuration[string.Format("HangfireMail:UseSsl")]),
-                                    User = JsonConfigHelper.Configuration[string.Format("HangfireMail:User")],
-                                    Password = AesHelper.Decrypt(JsonConfigHelper.Configuration[string.Format("HangfireMail:Password")]),
-                                },
-                                DefaultRecurringQueueName = "default",
-                                DefaultBackGroundJobQueueName = "default",
-                                //RecurringJobTimeZone = TZConvert.GetTimeZoneInfo("Asia/Shanghai"), //这里指定了添加周期性job时的时区
-                                // RecurringJobTimeZone = TimeZoneInfo.Local
-                                // CheckHttpResponseStatusCode = code => (int)code < 400   //===》(default)
-                            })
-                            .UseDashboardMetric(DashboardMetrics.AwaitingCount)
-                            .UseDashboardMetric(DashboardMetrics.ProcessingCount)
-                            .UseDashboardMetric(DashboardMetrics.RecurringJobCount)
-                            .UseDashboardMetric(DashboardMetrics.RetriesCount)
-                            .UseDashboardMetric(DashboardMetrics.FailedCount)
-                            .UseDashboardMetric(DashboardMetrics.ServerCount);
+                .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+                .UseSimpleAssemblyNameTypeSerializer()
+                .UseRecommendedSerializerSettings()
+                .UseMongoStorage(ConnConfig.GetConnectionString("Timing_Task"), ConnConfig.GetConnctionModel("Timing_Task").DbName, new MongoStorageOptions
+                {
+                    QueuePollInterval = TimeSpan.FromSeconds(15),
+                    JobExpirationCheckInterval = TimeSpan.FromHours(1),
+                    CountersAggregateInterval = TimeSpan.FromMinutes(5),
+                    ConnectionCheckTimeout = TimeSpan.FromMinutes(5),
+                    // 集合前缀必须要有
+                    Prefix = "hangfire.mongo",
+                })
+                .UseConsole(new ConsoleOptions()
+                {
+                    BackgroundColor = "#A9F5D0"
+                })
+                .UseHangfireHttpJob(new HangfireHttpJobOptions
+                {
+                    AddHttpJobButtonName = "添加计划任务",
+                    AddRecurringJobHttpJobButtonName = "添加定时任务",
+                    EditRecurringJobButtonName = "编辑定时任务",
+                    PauseJobButtonName = "暂停或开始",
+                    DashboardTitle = "任务管理",
+                    DashboardName = "后台任务管理",
+                    DashboardFooter = "后台任务管理V1.0.0.1",
+                    // 配置通知邮箱
+                    MailOption = new MailOption
+                    {
+                        Server = JsonConfigHelper.Configuration[string.Format("HangfireMail:Server")],
+                        Port = Convert.ToInt32(JsonConfigHelper.Configuration[string.Format("HangfireMail:Port")]),
+                        UseSsl = Convert.ToBoolean(JsonConfigHelper.Configuration[string.Format("HangfireMail:UseSsl")]),
+                        User = JsonConfigHelper.Configuration[string.Format("HangfireMail:User")],
+                        Password = AesHelper.Decrypt(JsonConfigHelper.Configuration[string.Format("HangfireMail:Password")]),
+                    },
+                    DefaultRecurringQueueName = "default",
+                    DefaultBackGroundJobQueueName = "default",
+                    //RecurringJobTimeZone = TZConvert.GetTimeZoneInfo("Asia/Shanghai"), //这里指定了添加周期性job时的时区
+                    // RecurringJobTimeZone = TimeZoneInfo.Local
+                    // CheckHttpResponseStatusCode = code => (int)code < 400   //===》(default)
+                })
+                .UseDashboardMetric(DashboardMetrics.AwaitingCount)
+                 .UseDashboardMetric(DashboardMetrics.ProcessingCount)
+                 .UseDashboardMetric(DashboardMetrics.RecurringJobCount)
+                 .UseDashboardMetric(DashboardMetrics.RetriesCount)
+                 .UseDashboardMetric(DashboardMetrics.FailedCount)
+                 .UseDashboardMetric(DashboardMetrics.ServerCount);
         }
 
         /// <summary>
